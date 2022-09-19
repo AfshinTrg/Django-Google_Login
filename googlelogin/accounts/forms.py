@@ -23,3 +23,8 @@ class UserRegistrationForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
     phone_number = forms.CharField(max_length=11)
 
+
+class UserLoginForm(forms.Form):
+    username = forms.CharField(max_length=50)
+    password = forms.CharField(widget=forms.PasswordInput)
+
