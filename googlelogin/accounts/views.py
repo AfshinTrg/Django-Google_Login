@@ -3,8 +3,7 @@ from django.views import View
 from .forms import UserRegistrationForm, UserLoginForm
 from django.contrib import messages
 from .models import CustomUser
-from django.contrib.auth import authenticate, login
-
+from django.contrib.auth import authenticate, login, logout
 
 
 class HomeView(View):
@@ -44,4 +43,11 @@ class UserLoginView(View):
                 return redirect('accounts:home')
             messages.error(request, 'Username or Password is Wrong', 'danger')
             return render(request, 'accounts/login.html', {'form': form})
+
+
+class UserLogoutView(View):
+    def get(self, request):
+        logout(request)
+        messages.success(request, 'Logged out Successfully', 'success')
+        return redirect('accounts:home')
 
